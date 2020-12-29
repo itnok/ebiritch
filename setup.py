@@ -24,7 +24,7 @@ VERSION = "0.1a0"
 
 setup(name=PKG_NAME,
       version=VERSION,
-      description="Yet Another Implementatin of The Bridge Card Game",
+      description="Yet Another Implementation of The Bridge Card Game",
       url="http://github.com/itnok/ebiritch",
       author="Simone Conti @itnok",
       author_email="s.conti@itnok.com",
