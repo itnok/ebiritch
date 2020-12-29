@@ -3,6 +3,9 @@
 
 from setuptools import setup, find_packages
 
+PKG_NAME = "ebiritch"
+
+
 # PEP0440 compatible formatted version, see:
 # https://www.python.org/dev/peps/pep-0440/
 #
@@ -16,4 +19,15 @@ from setuptools import setup, find_packages
 #   X.YrcN  # Release Candidate
 #   X.Y     # Final release
 
-VERSION = "0.1.0"
+VERSION = "0.1a0"
+
+
+setup(name=PKG_NAME,
+      version=VERSION,
+      description="Yet Another Implementatin of The Bridge Card Game",
+      url="http://github.com/itnok/ebiritch",
+      author="Simone Conti @itnok",
+      author_email="s.conti@itnok.com",
+      license="MIT",
+      packages=[PKG_NAME],
+      zip_safe=False)
