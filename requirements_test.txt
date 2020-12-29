@@ -1,0 +1,26 @@
+#### TESTING-RELATED PACKAGES ####
+
+# Automatically formats Python code to conform to the PEP 8 style guide
+autopep8
+
+# Checks style, syntax, and other useful errors.
+pylint
+
+# Static type checking
+mypy
+
+# Allows codecov to generate coverage reports
+coverage
+codecov
+
+
+#### DOC-RELATED PACKAGES ####
+
+# Builds our documentation.
+sphinx
+
+# Watches the documentation directory and rebuilds on changes.
+sphinx-autobuild
+
+# doc theme
+sphinx_rtd_theme

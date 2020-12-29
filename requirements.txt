@@ -1,0 +1,13 @@
+# Library dependencies for the python code.  You need to install these with
+# `pip install -r requirements.txt` before you can run this.
+
+#### ESSENTIAL LIBRARIES FOR MAIN FUNCTIONALITY ####
+
+# argument parsing in for data cleaning scripts
+argparse
+
+# Adds an @overrides decorator for better documentation and error checking when using subclasses.
+overrides
+
+# Type checking for python
+typing
