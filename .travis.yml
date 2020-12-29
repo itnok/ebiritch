@@ -48,8 +48,8 @@ install:
   - python3 -m pip install -r requirements.txt
   - python3 -m pip install -r requirements_test.txt
 script:
-  - find . -name "*.py" -exec pylint {} +
-  - coverage run test/test_main.py
+  - find . -name "*.py" -exec pylint {} + || travis_terminate 1
+  - coverage run test/test_main.py || travis_terminate 1
 # Print coverage stats & push the results back to codecov
 after_success:
   - coverage report
