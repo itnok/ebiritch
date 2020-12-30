@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""Setup package for distribution
+"""
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 PKG_NAME = "ebiritch"
 
