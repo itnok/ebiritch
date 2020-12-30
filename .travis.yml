@@ -27,17 +27,17 @@ jobs:
       # macOS 10.15.7
       osx_image: xcode12.2
       language: generic
-      env: PYTHON=3.9
+      env: PYTHON=3.9.1
     - os: osx
       # macOS 10.15.7
       osx_image: xcode12.2
       language: generic
-      env: PYTHON=3.8
+      env: PYTHON=3.8.7
     - os: osx
       # macOS 10.15.7
       osx_image: xcode12.2
       language: generic
-      env: PYTHON=3.7
+      env: PYTHON=3.7.9
     - os: osx
       # macOS 10.14.6
       osx_image: xcode11.3
@@ -54,8 +54,9 @@ jobs:
       language: generic
       env: PYTHON=3.7.9
 # Take care of requirements even before the installation step
-before_install: |
-  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+before_install:
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
     # Per the `pyenv homebrew recommendations <https://github.com/yyuu/pyenv/wiki#suggested-build-environment>`_.
     brew install openssl readline
     # See https://docs.travis-ci.com/user/osx-ci-environment/#A-note-on-upgrading-packages.
