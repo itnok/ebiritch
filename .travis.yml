@@ -1,4 +1,6 @@
 language: python
+env:
+  - HOMEBREW_NO_AUTO_UPDATE=1
 # Test for multiple Python versions on several OSes!
 jobs:
   include:
@@ -63,7 +65,8 @@ jobs:
 # Take care of requirements even before the installation step
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    brew install python@${PYTHON};
+    brew upgrade python@${PYTHON};
+    python --version;
     fi
 # Install required packages for both production & testing
 install:
