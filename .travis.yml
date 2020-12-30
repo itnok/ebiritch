@@ -1,6 +1,7 @@
 language: python
 env:
-  - HOMEBREW_NO_AUTO_UPDATE=1
+  global:
+    - HOMEBREW_NO_AUTO_UPDATE=1
 # Test for multiple Python versions on several OSes!
 jobs:
   include:
@@ -38,11 +39,6 @@ jobs:
       language: generic
       env: PYTHON=3.7
     - os: osx
-      # macOS 10.15.7
-      osx_image: xcode12.2
-      language: generic
-      env: PYTHON=3.6
-    - os: osx
       # macOS 10.14.6
       osx_image: xcode11.3
       language: generic
@@ -57,11 +53,6 @@ jobs:
       osx_image: xcode11.3
       language: generic
       env: PYTHON=3.7
-    - os: osx
-      # macOS 10.14.6
-      osx_image: xcode11.3
-      language: generic
-      env: PYTHON=3.6
 # Take care of requirements even before the installation step
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
