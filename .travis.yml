@@ -27,27 +27,37 @@ jobs:
       # macOS 10.15.7
       osx_image: xcode12.2
       language: generic
-      env: PYTHON=3.9.0
+      env: PYTHON=3.9
     - os: osx
       # macOS 10.15.7
       osx_image: xcode12.2
       language: generic
-      env: PYTHON=3.8.6
+      env: PYTHON=3.8
     - os: osx
       # macOS 10.15.7
       osx_image: xcode12.2
       language: generic
-      env: PYTHON=3.7.9
+      env: PYTHON=3.7
     - os: osx
       # macOS 10.14.6
       osx_image: xcode11.3
       language: generic
-      env: PYTHON=3.8.2
+      env: PYTHON=3.6
     - os: osx
       # macOS 10.14.6
       osx_image: xcode11.3
       language: generic
-      env: PYTHON=3.7.7
+      env: PYTHON=3.8
+    - os: osx
+      # macOS 10.14.6
+      osx_image: xcode11.3
+      language: generic
+      env: PYTHON=3.7
+    - os: osx
+      # macOS 10.14.6
+      osx_image: xcode11.3
+      language: generic
+      env: PYTHON=3.6
 # Take care of requirements even before the installation step
 before_install:
   - |
@@ -57,20 +67,25 @@ before_install:
     # See https://docs.travis-ci.com/user/osx-ci-environment/#A-note-on-upgrading-packages.
     # I didn't do this above because it works and I'm lazy.
     brew outdated pyenv || brew upgrade pyenv
-    # Just for debugging purposes list here
-    # all versions available for pyenv to install
-    pyenv install --list
-    pyenv install ${PYTHON}
+    # Build a list of all stable versions
+    # of Python starting with ``${PYTHON}``
+    export PYTHON_AVAILABLE_VERSIONS=$(pyenv install --list | \
+    egrep "^ *[0-9]" | \
+    xargs | tr ' ' '\n' | \
+    grep "^${PYTHON}" | \
+    grep -v "[a-z]" | \
+    sort -V)
+    pyenv install $(echo ${PYTHON_AVAILABLE_VERSIONS} | tail -n1)
     # Would have expected something like ``pyenv init; pyenv local ${PYTHON}`` or
     # ``pyenv shell ${PYTHON}`` would work, but ``pyenv init`` doesn't seem to
     # modify the BASH environment, hence hand-set the variables instead.
-    export PYENV_VERSION=${PYTHON}
+    export PYENV_VERSION=$(echo ${PYTHON_AVAILABLE_VERSIONS} | tail -n1)
     export PATH="${HOME}/.pyenv/shims:${PATH}"
     python3 -m venv travis-venv
     source travis-venv/bin/activate
-    # A manual check that the correct version of Python is running.
-    python3 --version
     fi
+  # A manual check that the correct version of Python is running.
+  - python3 --version
 # Install required packages for both production & testing
 install:
   - python3 -m pip install -r requirements.txt
